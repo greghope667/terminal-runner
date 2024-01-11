@@ -1,7 +1,7 @@
 add_requires("cmake::KF5Parts", {system = true, configs = {link_libraries="KF5::Parts"}})
 
 set_languages("c++17")
-add_cxflags("-O")
+add_cxflags("-O", "-Wall", "-Wextra", "-Werror")
 
 target("terminal-runner")
 	add_rules("qt.widgetapp")
