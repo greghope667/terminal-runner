@@ -1,14 +1,10 @@
 #include "main.h"
 
+#include "window.h"
+
 #include <QApplication>
 #include <QMessageBox>
 #include <iostream>
-
-MainWindow::MainWindow()
-	: console_(new Console(this))
-{
-	setCentralWidget(console_);
-}
 
 void fatal(QWidget* w, const QString& message)
 {

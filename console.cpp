@@ -2,7 +2,7 @@
 
 #include <KPluginFactory>
 #include <KParts/ReadOnlyPart>
-#include <QLayout>
+#include <QStackedLayout>
 #include <kde_terminal_interface.h>
 
 #include "main.h"
@@ -10,7 +10,7 @@
 Console::Console(QWidget* parent)
 	: QWidget(parent)
 {
-	setLayout(new QVBoxLayout(this));
+	setLayout(new QStackedLayout(this));
 	closed();
 }
 

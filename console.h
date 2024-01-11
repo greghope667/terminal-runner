@@ -16,7 +16,7 @@ private Q_SLOTS:
 	void closed();
 
 public:
-	Console(QWidget* parent);
+	explicit Console(QWidget* parent = nullptr);
 	~Console();
 
 public Q_SLOTS:

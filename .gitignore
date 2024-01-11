@@ -6,4 +6,7 @@ build/
 # MacOS Cache
 .DS_Store
 
+# Compile Commands
+compile_commands.json
+
 
