@@ -11,24 +11,16 @@ Console::Console(QWidget* parent)
 	: QWidget(parent)
 {
 	setLayout(new QStackedLayout(this));
-	closed();
+	load();
 }
 
 Console::~Console()
 {
-	disconnect(part_, &KParts::ReadOnlyPart::destroyed, this, &Console::closed);
-}
-
-void Console::closed()
-{
-	part_ = nullptr;
-	load();
+	disconnect(part_, &KParts::ReadOnlyPart::destroyed, this, &Console::load);
 }
 
 void Console::load()
 {
-	if (part_) return;
-
 	static auto* factory = KPluginFactory::loadFactory(QStringLiteral("konsolepart")).plugin;
 	if (!factory)
 		fatal(this, "Unable to load konsolepart\n(maybe Konsole not installed?)");
@@ -39,7 +31,7 @@ void Console::load()
 		fatal(this, "Creating konsolepart failed");
 
 	layout()->addWidget(part_->widget());
-	connect(part_, &KParts::ReadOnlyPart::destroyed, this, &Console::closed);
+	connect(part_, &KParts::ReadOnlyPart::destroyed, this, &Console::load);
 }
 
 void Console::write(const QString& text)

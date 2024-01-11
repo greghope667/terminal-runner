@@ -12,9 +12,6 @@ private:
 	KParts::ReadOnlyPart* part_ = nullptr;
 	void load();
 
-private Q_SLOTS:
-	void closed();
-
 public:
 	explicit Console(QWidget* parent = nullptr);
 	~Console();
