@@ -22,4 +22,6 @@ public:
 public Q_SLOTS:
 	void write(const QString& text);
 	void interrupt();
+	void clear();
+	void cwd(const QString& dir);
 };

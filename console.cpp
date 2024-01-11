@@ -53,3 +53,13 @@ void Console::interrupt()
 {
 	write("\003"); // ^C
 }
+
+void Console::cwd(const QString& dir)
+{
+	write("cd " + dir);
+}
+
+void Console::clear()
+{
+	write("clear");
+}

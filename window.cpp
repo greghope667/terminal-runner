@@ -4,6 +4,7 @@
 #include "editor.h"
 
 #include <QDockWidget>
+#include <QFileDialog>
 #include <QToolBar>
 
 MainWindow::MainWindow()
@@ -12,7 +13,13 @@ MainWindow::MainWindow()
 {
 	auto toolbar = new QToolBar();
 	toolbar->addAction("New Command", this, &MainWindow::addEditor);
+	toolbar->addAction("Choose Dir", [=]() {
+		auto dir = QFileDialog::getExistingDirectory(this, "Choose Dir");
+		console_->cwd(dir);
+	});
 	toolbar->addAction("Interrupt", console_, &Console::interrupt);
+	toolbar->addAction("Clear", console_, &Console::clear);
+
 	addToolBar(toolbar);
 	setCentralWidget(console_);
 }
