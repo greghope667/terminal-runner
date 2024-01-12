@@ -6,6 +6,7 @@
 #include <QDockWidget>
 #include <QFileDialog>
 #include <QToolBar>
+#include <QGuiApplication>
 
 MainWindow::MainWindow()
 	: QMainWindow()
@@ -24,11 +25,26 @@ MainWindow::MainWindow()
 	setCentralWidget(console_);
 }
 
+static void setFeatures(QDockWidget* dock)
+{
+	/* Floating dock windows isn't supported on Wayland.
+	 * Hopefully this gets fixed in a future Qt release
+	 */
+	static bool noFloat = []{
+		return QGuiApplication::platformName() == "wayland";
+	}();
+
+	if (noFloat) {
+		dock->setFeatures(dock->features() & ~QDockWidget::DockWidgetFloatable);
+	}
+}
+
 void MainWindow::addEditor()
 {
 	auto dock = new QDockWidget(">_");
 	auto editor = new Editor();
 	dock->setWidget(editor);
+	setFeatures(dock);
 	addDockWidget(Qt::LeftDockWidgetArea, dock);
 
 	connect(editor, &Editor::sendText, console_, &Console::write);
