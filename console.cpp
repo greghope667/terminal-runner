@@ -21,7 +21,7 @@ Console::~Console()
 
 void Console::load()
 {
-	static auto* factory = KPluginFactory::loadFactory(QStringLiteral("konsolepart")).plugin;
+	static auto* factory = KPluginFactory::loadFactory(QStringLiteral("kf6/parts/konsolepart")).plugin;
 	if (!factory)
 		fatal(this, "Unable to load konsolepart\n(maybe Konsole not installed?)");
 

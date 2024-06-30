@@ -1,4 +1,4 @@
-add_requires("cmake::KF5Parts", {system = true, configs = {link_libraries="KF5::Parts"}})
+add_requires("cmake::KF6Parts", {system = true, configs = {link_libraries="KF6::Parts"}})
 
 set_languages("c++17")
 add_cxflags("-O", "-Wall", "-Wextra", "-Werror")
@@ -8,7 +8,7 @@ target("terminal-runner")
 	add_files("*.h") -- for qt moc
 	add_files("*.cpp")
 	add_frameworks("QtGui")
-	add_packages("cmake::KF5Parts")
+	add_packages("cmake::KF6Parts")
 
 	-- Output compile commands
 	after_build(function (target)
